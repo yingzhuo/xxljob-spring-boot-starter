@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Bean;
  * @since 2.3.0
  */
 @EnableConfigurationProperties(XXLJobProperties.class)
-@ConditionalOnProperty(prefix = "xxl-job", name = "enabled", havingValue = "true")
+@ConditionalOnProperty(prefix = "xxl-job", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class XXLJobAutoConfig {
 
     @Bean
