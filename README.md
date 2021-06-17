@@ -12,7 +12,7 @@
 
 #### 下载
 
-* 推荐使用[maven](https://search.maven.org/search?q=g:com.github.yingzhuo%20AND%20a:xxljob-spring-boot-starter)
+* 推荐使用[apache-maven](https://search.maven.org/search?q=g:com.github.yingzhuo%20AND%20a:xxljob-spring-boot-starter)
 
 #### 作者
 
