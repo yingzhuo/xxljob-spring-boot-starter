@@ -1,18 +1,10 @@
-/*
-            _  _       _                          _                   _                 _            _             _
-__  ____  _| |(_) ___ | |__        ___ _ __  _ __(_)_ __   __ _      | |__   ___   ___ | |_      ___| |_ __ _ _ __| |_ ___ _ __
-\ \/ /\ \/ / || |/ _ \| '_ \ _____/ __| '_ \| '__| | '_ \ / _` |_____| '_ \ / _ \ / _ \| __|____/ __| __/ _` | '__| __/ _ \ '__|
- >  <  >  <| || | (_) | |_) |_____\__ \ |_) | |  | | | | | (_| |_____| |_) | (_) | (_) | ||_____\__ \ || (_| | |  | ||  __/ |
-/_/\_\/_/\_\_|/ |\___/|_.__/      |___/ .__/|_|  |_|_| |_|\__, |     |_.__/ \___/ \___/ \__|    |___/\__\__,_|_|   \__\___|_|
-            |__/                      |_|                 |___/
- */
 package com.github.yingzhuo.xxljob.springboot.starter;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import java.io.Serializable;
 
 /**
  * @author 应卓
@@ -20,8 +12,10 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
 @ConfigurationProperties(prefix = "xxl-job")
-public class XXLJobProperties implements Serializable {
+public class XXLJobProperties {
 
     /**
      * enable this starter if true
