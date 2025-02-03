@@ -1,0 +1,146 @@
+//file:noinspection GroovyAssignabilityCheck
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'signing'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.github.yingzhuo'
+version = '2.5.0-1'
+
+ext {
+    set('pomGroupId', 'com.github.yingzhuo')
+    set('pomVersion', "${project.version}")
+    set('pomArtifactId', 'xxljob-spring-boot-starter')
+    set('pomArtifactName', 'xxljob-spring-boot-starter')
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:3.4.2"
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { name = '阿里云'; url = 'https://maven.aliyun.com/repository/public/' }
+    maven { name = '腾讯云'; url = 'https://mirrors.cloud.tencent.com/gradle/' }
+    maven { name = '阿里云(Spring)'; url = 'https://maven.aliyun.com/repository/spring/' }
+    maven { name = 'Spring(GA)'; url = 'https://repo.spring.io/release' }
+    maven { name = 'Spring(Milestone)'; url = 'https://repo.spring.io/milestone' }
+    maven { name = 'Spring(Snapshot)'; url = 'https://repo.spring.io/snapshot' }
+    google()
+}
+
+dependencies {
+    // spring-boot & spring
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compileOnly 'org.springframework.boot:spring-boot-autoconfigure'
+    compileOnly 'org.springframework.boot:spring-boot-starter-aop'
+    compileOnly 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.springframework.boot:spring-boot-starter-security'
+    compileOnly 'org.springframework.boot:spring-boot-starter-logging'
+    compileOnly 'org.springframework.boot:spring-boot-starter-validation'
+    compileOnly 'org.springframework.boot:spring-boot-starter-jdbc'
+    compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
+    compileOnly 'org.springframework.boot:spring-boot-starter-data-redis'
+    compileOnly 'org.springframework.boot:spring-boot-autoconfigure-processor'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+    // xxl-job-core
+    implementation 'com.xuxueli:xxl-job-core:2.5.0'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // slf4j
+    implementation 'org.slf4j:slf4j-api'
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = "${pomGroupId}"
+            artifactId = "${pomArtifactId}"
+            version = "${pomVersion}"
+
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+
+            from components.java
+
+            pom {
+                name = "${pomArtifactName}"
+                description = "spring-boot starter for xxl-job"
+                url = "https://github.com/yingzhuo/xxljob-spring-boot-starter"
+                inceptionYear = '2025'
+
+                licenses {
+                    license {
+                        name = 'Apache License, Version 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'yingzhuo'
+                        name = '应卓'
+                        email = 'yingzhor@gmail.com'
+                    }
+                }
+                scm {
+                    url = "git@github.com:yingzhuo/xxljob-spring-boot-starter.git"
+                    connection = 'scm:git:git@github.com:yingzhuo/xxljob-spring-boot-starter.git'
+                    developerConnection = 'scm:git:git@github.com:yingzhuo/xxljob-spring-boot-starter.git'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "OSSRH"
+
+            def releaseUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+            def snapshotUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+            url = version.endsWith('SNAPSHOT') ? snapshotUrl : releaseUrl
+
+            credentials {
+                username = System.getenv("OSSRH_TOKEN_USERNAME")
+                password = System.getenv("OSSRH_TOKEN_PASSWORD")
+            }
+        }
+    }
+}
+
+signing {
+    useGpgCmd()
+    sign publishing.publications.mavenJava
+}

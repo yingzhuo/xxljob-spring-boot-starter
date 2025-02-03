@@ -1,0 +1,13 @@
+pluginManagement {
+    repositories {
+        maven {
+            name = '阿里云'
+            url = 'https://maven.aliyun.com/repository/gradle-plugin'
+            allowInsecureProtocol = true
+        }
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'xxljob-spring-boot-starter'
+includeBuild 'gradle'
