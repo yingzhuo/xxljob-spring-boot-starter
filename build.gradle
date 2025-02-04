@@ -62,6 +62,7 @@ javadoc {
     if (JavaVersion.current().isJava9Compatible()) {
         options.addBooleanOption('html5', true)
     }
+    options.addBooleanOption('Xdoclint:none', true)
 }
 
 test {
@@ -73,6 +74,9 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+processResources {
 }
 
 publishing {
