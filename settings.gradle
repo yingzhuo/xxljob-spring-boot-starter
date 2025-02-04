@@ -9,5 +9,22 @@ pluginManagement {
     }
 }
 
+plugins {
+    id 'io.spring.dependency-management' version '1.1.7' apply false
+}
+
+dependencyResolutionManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { name = '阿里云'; url = 'https://maven.aliyun.com/repository/public/' }
+        maven { name = '阿里云(Spring)'; url = 'https://maven.aliyun.com/repository/spring/' }
+        maven { name = 'Spring(GA)'; url = 'https://repo.spring.io/release' }
+        maven { name = 'Spring(Milestone)'; url = 'https://repo.spring.io/milestone' }
+        maven { name = 'Spring(Snapshot)'; url = 'https://repo.spring.io/snapshot' }
+        google()
+    }
+}
+
 rootProject.name = 'xxljob-spring-boot-starter'
-includeBuild 'gradle'
+includeBuild 'gradle/plugin'

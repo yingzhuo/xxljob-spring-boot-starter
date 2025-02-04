@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.io.Serializable;
+
 /**
  * @author 应卓
  * @since 2.3.0
@@ -15,7 +17,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ToString
 @NoArgsConstructor
 @ConfigurationProperties(prefix = "xxl-job")
-public class XXLJobProperties {
+public class XXLJobProperties implements Serializable {
 
     /**
      * enable this starter if true
@@ -23,7 +25,7 @@ public class XXLJobProperties {
     private boolean enabled = true;
 
     /**
-     * xxl-job admin address list, such as "http://address" or "http://address01,http://address02"
+     * xxl-job admin address list, such as "<a href="http://address">...</a>" or "<a href="http://address01,http://address02">...</a>"
      */
     private String adminAddresses;
 
