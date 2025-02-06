@@ -20,7 +20,7 @@ ext {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.boot:spring-boot-dependencies:3.4.2"
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:3.4.2'
     }
 }
 
@@ -134,8 +134,8 @@ publishing {
             url = version.endsWith('SNAPSHOT') ? snapshotUrl : releaseUrl
 
             credentials {
-                username = System.getenv("OSSRH_TOKEN_USERNAME")
-                password = System.getenv("OSSRH_TOKEN_PASSWORD")
+                username = providers.gradleProperty('ossrh.token.username').getOrNull()
+                password = providers.gradleProperty('ossrh.token.password').getOrNull()
             }
         }
     }
