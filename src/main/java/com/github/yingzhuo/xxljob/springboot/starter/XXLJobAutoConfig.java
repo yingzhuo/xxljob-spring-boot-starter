@@ -14,19 +14,19 @@ import org.springframework.context.annotation.Bean;
 @ConditionalOnProperty(prefix = "xxl-job", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class XXLJobAutoConfig {
 
-    @Bean
-    @ConditionalOnMissingBean
-    public XxlJobSpringExecutor xxlJobSpringExecutor(XXLJobProperties props) {
-        final XxlJobSpringExecutor executor = new XxlJobSpringExecutor();
-        executor.setAdminAddresses(props.getAdminAddresses());
-        executor.setAppname(props.getExecutorApplicationName());
-        executor.setAddress(props.getExecutorAddress());
-        executor.setIp(props.getExecutorIp());
-        executor.setPort(props.getExecutorPort());
-        executor.setAccessToken(props.getAccessToken());
-        executor.setLogPath(props.getLogPath());
-        executor.setLogRetentionDays(props.getLogRetentionDays());
-        return executor;
-    }
+	@Bean
+	@ConditionalOnMissingBean
+	public XxlJobSpringExecutor xxlJobSpringExecutor(XXLJobProperties props) {
+		final XxlJobSpringExecutor executor = new XxlJobSpringExecutor();
+		executor.setAdminAddresses(props.getAdminAddresses());
+		executor.setAppname(props.getExecutorApplicationName());
+		executor.setAddress(props.getExecutorAddress());
+		executor.setIp(props.getExecutorIp());
+		executor.setPort(props.getExecutorPort());
+		executor.setAccessToken(props.getAccessToken());
+		executor.setLogPath(props.getLogPath());
+		executor.setLogRetentionDays(props.getLogRetentionDays());
+		return executor;
+	}
 
 }

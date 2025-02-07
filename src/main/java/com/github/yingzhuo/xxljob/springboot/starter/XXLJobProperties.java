@@ -19,49 +19,49 @@ import java.io.Serializable;
 @ConfigurationProperties(prefix = "xxl-job")
 public class XXLJobProperties implements Serializable {
 
-    /**
-     * enable this starter if true
-     */
-    private boolean enabled = true;
+	/**
+	 * enable this starter if true
+	 */
+	private boolean enabled = true;
 
-    /**
-     * xxl-job admin address list, such as "<a href="http://address">...</a>" or "<a href="http://address01,http://address02">...</a>"
-     */
-    private String adminAddresses;
+	/**
+	 * xxl-job admin address list, such as "<a href="http://address">...</a>" or "<a href="http://address01,http://address02">...</a>"
+	 */
+	private String adminAddresses;
 
-    /**
-     * access token
-     */
-    private String accessToken;
+	/**
+	 * access token
+	 */
+	private String accessToken;
 
-    /**
-     * application name
-     */
-    private String executorApplicationName;
+	/**
+	 * application name
+	 */
+	private String executorApplicationName;
 
-    /**
-     * executor registry-address: default use address to registry , otherwise use ip:port if address is null
-     */
-    private String executorAddress;
+	/**
+	 * executor registry-address: default use address to registry , otherwise use ip:port if address is null
+	 */
+	private String executorAddress;
 
-    /**
-     * executor IP address
-     */
-    private String executorIp;
+	/**
+	 * executor IP address
+	 */
+	private String executorIp;
 
-    /**
-     * executor port
-     */
-    private int executorPort = 9999;
+	/**
+	 * executor port
+	 */
+	private int executorPort = 9999;
 
-    /**
-     * executor log for path
-     */
-    private String logPath = "/tmp";
+	/**
+	 * executor log for path
+	 */
+	private String logPath = "/tmp";
 
-    /**
-     * log retention days
-     */
-    private int logRetentionDays = 7;
+	/**
+	 * log retention days
+	 */
+	private int logRetentionDays = 7;
 
 }
