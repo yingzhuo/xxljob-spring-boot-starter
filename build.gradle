@@ -2,14 +2,13 @@
 
 plugins {
     id 'java'
-    id 'idea'
-    id 'maven-publish'
     id 'signing'
+    id 'maven-publish'
     id 'io.spring.dependency-management'
 }
 
 group = 'com.github.yingzhuo'
-version = '2.5.0-1'
+version = '2.5.0-2'
 
 ext {
     set('pomGroupId', 'com.github.yingzhuo')
@@ -53,6 +52,10 @@ dependencies {
 java {
     withJavadocJar()
     withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
@@ -67,13 +70,6 @@ javadoc {
 
 test {
     useJUnitPlatform()
-}
-
-idea {
-    module {
-        downloadSources = true
-        downloadJavadoc = true
-    }
 }
 
 processResources {
@@ -144,4 +140,8 @@ publishing {
 signing {
     useGpgCmd()
     sign publishing.publications.mavenJava
+}
+
+generateMetadataFileForMavenJavaPublication {
+    enabled = false
 }

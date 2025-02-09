@@ -17,13 +17,13 @@ compile:
 	@gradlew classes
 
 build:
-	@gradlew build -x"test"
+	@gradlew build -x test
 
 publish:
-	@gradlew publish -x"test"
+	@gradlew publish -x test
 
 install:
-	@gradlew publishToMavenLocal -x"test"
+	@gradlew publishToMavenLocal -x test
 
 clean:
 	@gradlew clean -q
