@@ -16,6 +16,7 @@ hs_err_pid*
 # idea
 # --------------------------------------
 .idea/
+.run/
 *.iml
 *.eml
 *.ipr
@@ -29,12 +30,27 @@ hs_err_pid*
 # --------------------------------------
 # gradle
 # --------------------------------------
+.gradle/
+.kotlin/
 build/
 bin/
-.gradle/
 
 !/**/src/**/build
 !/**/src/**/bin
+
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# --------------------------------------
+# 构建产物等
+# --------------------------------------
+*.jar
+*.war
+*.zip
+*.tar.gz
+*.tgz
+*.rar
+*.7z
 
 # --------------------------------------
 # temporary files

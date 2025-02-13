@@ -9,22 +9,50 @@ tab_width = 4
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.{groovy,java,kt,scala,xml}]
+[*.{groovy,java,kt,scala}]
 indent_style = tab
 indent_size = 4
 
-[*.{json,json5}]
-indent_style = space
+[*.lua]
+indent_style = tab
+indent_size = 4
+
+[*.xml]
+indent_style = tab
 indent_size = 2
 
-[*.toml]
-indent_style = space
+[*.{yaml,yml}]
+indent_style = tab
 indent_size = 2
 
 [*.conf]
-indent_style = space
-indent_size = 2
-
-[makefile]
 indent_style = tab
 indent_size = 2
+
+[*.ini]
+indent_style = tab
+indent_size = 2
+
+[*.toml]
+indent_style = tab
+indent_size = 2
+
+[*.properties]
+indent_style = space
+indent_size = 2
+charset = latin1
+
+[*.{json,json5}]
+indent_style = tab
+indent_size = 2
+
+[{makefile,Makefile}]
+indent_style = tab
+indent_size = 2
+
+[*{.gradle,.gradle.kts}]
+indent_style = tab
+indent_size = 2
+
+[*.{bat,cmd}]
+end_of_line = crlf
