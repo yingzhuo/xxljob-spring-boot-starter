@@ -1,147 +1,148 @@
 //file:noinspection GroovyAssignabilityCheck
 
 plugins {
-    id "java"
-    id "signing"
-    id "maven-publish"
-    id "io.spring.dependency-management"
+	id "java"
+	id "signing"
+	id "maven-publish"
+	id "io.spring.dependency-management"
 }
 
 group = "com.github.yingzhuo"
 version = "2.5.0-2"
 
 ext {
-    set("pomGroupId", "com.github.yingzhuo")
-    set("pomVersion", "${project.version}")
-    set("pomArtifactId", "xxljob-spring-boot-starter")
-    set("pomArtifactName", "xxljob-spring-boot-starter")
+	set("pomGroupId", "com.github.yingzhuo")
+	set("pomVersion", "${project.version}")
+	set("pomArtifactId", "xxljob-spring-boot-starter")
+	set("pomArtifactName", "xxljob-spring-boot-starter")
 }
 
 dependencyManagement {
-    imports {
-        mavenBom "org.springframework.boot:spring-boot-dependencies:3.4.2"
-    }
+	imports {
+		mavenBom "org.springframework.boot:spring-boot-dependencies:3.4.2"
+	}
 }
 
 dependencies {
-    // spring-boot & spring
-    testImplementation "org.springframework.boot:spring-boot-starter-test"
-    compileOnly "org.springframework.boot:spring-boot-autoconfigure"
-    compileOnly "org.springframework.boot:spring-boot-starter-aop"
-    compileOnly "org.springframework.boot:spring-boot-starter-web"
-    compileOnly "org.springframework.boot:spring-boot-starter-security"
-    compileOnly "org.springframework.boot:spring-boot-starter-logging"
-    compileOnly "org.springframework.boot:spring-boot-starter-validation"
-    compileOnly "org.springframework.boot:spring-boot-starter-jdbc"
-    compileOnly "org.springframework.boot:spring-boot-configuration-processor"
-    compileOnly "org.springframework.boot:spring-boot-starter-data-redis"
-    compileOnly "org.springframework.boot:spring-boot-autoconfigure-processor"
-    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+	// spring-boot & spring
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
+	compileOnly "org.springframework.boot:spring-boot-autoconfigure"
+	compileOnly "org.springframework.boot:spring-boot-starter-aop"
+	compileOnly "org.springframework.boot:spring-boot-starter-web"
+	compileOnly "org.springframework.boot:spring-boot-starter-security"
+	compileOnly "org.springframework.boot:spring-boot-starter-logging"
+	compileOnly "org.springframework.boot:spring-boot-starter-validation"
+	compileOnly "org.springframework.boot:spring-boot-starter-jdbc"
+	compileOnly "org.springframework.boot:spring-boot-configuration-processor"
+	compileOnly "org.springframework.boot:spring-boot-starter-data-redis"
+	compileOnly "org.springframework.boot:spring-boot-autoconfigure-processor"
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
-    // xxl-job-core
-    implementation "com.xuxueli:xxl-job-core:2.5.0"
+	// xxl-job-core
+	implementation "com.xuxueli:xxl-job-core:2.5.0"
 
-    // lombok
-    compileOnly "org.projectlombok:lombok"
-    annotationProcessor "org.projectlombok:lombok"
+	// lombok
+	compileOnly "org.projectlombok:lombok"
+	annotationProcessor "org.projectlombok:lombok"
 
-    // slf4j
-    implementation "org.slf4j:slf4j-api"
+	// slf4j
+	implementation "org.slf4j:slf4j-api"
 }
 
 java {
-    withJavadocJar()
-    withSourcesJar()
+	withJavadocJar()
+	withSourcesJar()
 
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
+	toolchain {
+		languageVersion.set(JavaLanguageVersion.of(17))
+	}
 }
 
 javadoc {
-    if (JavaVersion.current().isJava9Compatible()) {
-        options.addBooleanOption("html5", true)
-    }
-    options.addBooleanOption("Xdoclint:none", true)
+	if (JavaVersion.current().isJava9Compatible()) {
+		options.addBooleanOption("html5", true)
+	}
+	options.addBooleanOption("Xdoclint:none", true)
 }
 
 test {
-    useJUnitPlatform()
+	useJUnitPlatform()
 }
 
 processResources {
 }
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = "${pomGroupId}"
-            artifactId = "${pomArtifactId}"
-            version = "${pomVersion}"
+	publications {
+		mavenJava(MavenPublication) {
+			groupId = "${pomGroupId}"
+			artifactId = "${pomArtifactId}"
+			version = "${pomVersion}"
 
-            versionMapping {
-                usage("java-api") {
-                    fromResolutionOf("runtimeClasspath")
-                }
-                usage("java-runtime") {
-                    fromResolutionResult()
-                }
-            }
+			versionMapping {
+				usage("java-api") {
+					fromResolutionOf("runtimeClasspath")
+				}
+				usage("java-runtime") {
+					fromResolutionResult()
+				}
+			}
 
-            from components.java
+			from components.java
 
-            pom {
-                name = "${pomArtifactName}"
-                description = "spring-boot starter for xxl-job"
-                url = "https://github.com/yingzhuo/xxljob-spring-boot-starter"
-                inceptionYear = "2025"
+			pom {
+				name = "${pomArtifactName}"
+				description = "spring-boot starter for xxl-job"
+				url = "https://github.com/yingzhuo/xxljob-spring-boot-starter"
+				inceptionYear = "2025"
 
-                licenses {
-                    license {
-                        name = "Apache License, Version 2.0"
-                        url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
-                    }
-                }
-                developers {
-                    developer {
-                        id = "yingzhuo"
-                        name = "应卓"
-                        email = "yingzhor@gmail.com"
-                    }
-                }
-                scm {
-                    url = "git@github.com:yingzhuo/xxljob-spring-boot-starter.git"
-                    connection = "scm:git:git@github.com:yingzhuo/xxljob-spring-boot-starter.git"
-                    developerConnection = "scm:git:git@github.com:yingzhuo/xxljob-spring-boot-starter.git"
-                }
-            }
-        }
-    }
+				licenses {
+					license {
+						name = "Apache License, Version 2.0"
+						url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+					}
+				}
+				developers {
+					developer {
+						id = "yingzhuo"
+						name = "应卓"
+						email = "yingzhor@gmail.com"
+					}
+				}
+				scm {
+					url = "git@github.com:yingzhuo/xxljob-spring-boot-starter.git"
+					connection = "scm:git:git@github.com:yingzhuo/xxljob-spring-boot-starter.git"
+					developerConnection = "scm:git:git@github.com:yingzhuo/xxljob-spring-boot-starter.git"
+				}
+			}
+		}
+	}
 
-    repositories {
-        maven {
-            name = "OSSRH"
+	repositories {
+		maven {
+			name = "OSSRH"
 
-            def releaseUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-            def snapshotUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
-            url = version.endsWith("SNAPSHOT") ? snapshotUrl : releaseUrl
+			def releaseUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+			def snapshotUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+			url = version.endsWith("SNAPSHOT") ? snapshotUrl : releaseUrl
 
-            credentials {
-                username = providers.gradleProperty("ossrh.token.username").getOrNull()
-                password = providers.gradleProperty("ossrh.token.password").getOrNull()
-            }
-        }
-    }
+			credentials {
+				username = providers.gradleProperty("ossrh.token.username").getOrNull()
+				password = providers.gradleProperty("ossrh.token.password").getOrNull()
+			}
+		}
+	}
 }
 
 signing {
-    useGpgCmd()
-    sign publishing.publications.mavenJava
+	useGpgCmd()
+	sign publishing.publications.mavenJava
 }
 
-generateMetadataFileForMavenJavaPublication {
-    enabled = false
+tasks.withType(GenerateModuleMetadata).configureEach {
+	enabled = false
 }
+
