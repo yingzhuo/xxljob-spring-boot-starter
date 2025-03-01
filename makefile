@@ -11,7 +11,7 @@ usage:
 	@echo "=============================================================="
 
 wrapper:
-	@gradle wrapper --gradle-distribution-url 'https://mirrors.cloud.tencent.com/gradle/gradle-8.12.1-bin.zip'
+	@gradle wrapper --gradle-distribution-url 'https://mirrors.cloud.tencent.com/gradle/gradle-8.13-bin.zip'
 
 compile:
 	@gradlew classes
